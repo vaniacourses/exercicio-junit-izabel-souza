@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,26 +15,53 @@ import org.junit.jupiter.api.Test;
 public class ProdutoTest {
 	
 	Produto livro;
+	Produto jogo;
+	Produto fone;
+	Produto console;
 	
 	@BeforeEach
 	public void inicializa() {
-		livro = new Produto("Introdução ao Teste de Software", 100.00);
+		livro = new Produto("Introduï¿½ï¿½o ao Teste de Software", 100.00);
+		jogo = new Produto("Super Mario World", 85);
+		fone = new Produto("Samsung Galaxy Bud", 550);
+		console = new Produto("PS4", 1000);
 	}
 	
 	@Test
-	public void testCriaProduto() {
+	public void testCriaProdutos() {
 		Assertions.assertAll("livro",
-				() -> assertEquals("Introdução ao Teste de Software", livro.getNome()),
+				() -> assertEquals("Introduï¿½ï¿½o ao Teste de Software", livro.getNome()),
 				() -> assertTrue(100.00 == livro.getPreco())						
+				);
+		
+		Assertions.assertAll("jogo",
+				() -> assertEquals("Super Mario World", jogo.getNome()),
+				() -> assertTrue(85 == jogo.getPreco())						
+				);
+		
+		Assertions.assertAll("fone",
+				() -> assertEquals("Samsung Galaxy Bud", fone.getNome()),
+				() -> assertTrue(550 == fone.getPreco())						
+				);
+		
+		Assertions.assertAll("console",
+				() -> assertEquals("PS4", console.getNome()),
+				() -> assertTrue(1000 == console.getPreco())						
 				);
 	}
 	
 	@Test
-	public void testProdutosIguais() {
-		Produto livro2 = new Produto("Introdução ao Teste de Software", 90.00);
+	public void testLivrosDiferentes() {
+		Produto livro2 = new Produto("Introduï¿½ï¿½o ao Teste de Software", 90.00);
 		
-		assertNotSame(livro, livro2);
+		assertNotSame(livro, livro2);	
+	}
+	
+	@Test
+	public void testJogosIguais() {
+		Produto jogo2 = new Produto("Super Mario World", 85);
 		
+		assertSame(jogo, jogo2);	
 	}
 	
 	@Test
